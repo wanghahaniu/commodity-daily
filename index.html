@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铜 &amp; 原油日报 · 2026-09-11</title>
+<style>
+  :root{
+    --bg:#0f141b; --bg-grad:#0b0f16; --panel:#151c26; --panel2:#1a2230; --border:#242e3c;
+    --txt:#e9edf4; --sub:#98a4b6; --muted:#667184;
+    --up:#e5484d; --down:#2fb875; --blue:#54a8ff; --gold:#e8b84b;
+    --orange:#f5a623;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(1200px 600px at 50% -100px, #1a2534 0%, var(--bg-grad) 55%);
+    color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7; padding:0 0 60px; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px}
+
+  header{text-align:center;padding:30px 16px 6px}
+  header .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:8px}
+  header .eyebrow::before,.eyebrow::after{content:"";width:24px;height:1px;background:var(--gold);opacity:.5}
+  header h1{font-size:28px;font-weight:800;letter-spacing:1px;margin-bottom:4px}
+  header .date{color:var(--sub);font-size:13px}
+  header .src{margin-top:10px;color:var(--sub);font-size:11.5px}
+  header .src .pill{display:inline-block;padding:1px 8px;border-radius:20px;background:rgba(84,168,255,.1);color:var(--blue);border:1px solid rgba(84,168,255,.25);font-size:10.5px;margin:2px 2px}
+
+  .tabs{position:sticky;top:0;z-index:50;display:flex;gap:8px;padding:14px 16px 12px;background:rgba(11,15,22,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);justify-content:center}
+  .tab{flex:0 1 200px;max-width:220px;padding:11px 18px;border-radius:12px;border:1px solid var(--border);background:var(--panel);color:var(--sub);font-size:15px;font-weight:700;cursor:pointer;text-align:center;transition:all .18s;letter-spacing:.5px}
+  .tab.active.blue{background:linear-gradient(135deg,#1c3a5c,#15314f);border-color:var(--blue);color:#fff;box-shadow:0 2px 14px rgba(84,168,255,.3)}
+  .tab.active.orange{background:linear-gradient(135deg,#4a3513,#3a2a0e);border-color:var(--orange);color:#fff;box-shadow:0 2px 14px rgba(245,166,35,.3)}
+  .tab .sub{display:block;font-size:10.5px;font-weight:400;opacity:.7;margin-top:2px}
+
+  .pane{display:none}
+  .pane.active{display:block}
+
+  .hero{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0 6px}
+  @media(min-width:560px){.hero{grid-template-columns:repeat(4,1fr)}}
+  .hero .kpi{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:13px 10px;text-align:center}
+  .hero .kpi .v{font-size:20px;font-weight:800;color:var(--up);letter-spacing:.3px}
+  .hero .kpi .v.alt{color:var(--blue)}
+  .hero .kpi.orange .v{color:var(--orange)}
+  .hero .kpi .v.down{color:var(--down)}
+  .hero .kpi .l{font-size:11px;color:var(--sub);margin-top:3px}
+
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px 18px;margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+  .card h2{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:9px}
+  .card h2 .no{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:7px;color:#fff;font-size:13px;font-weight:800;flex:0 0 24px}
+  .blue .card h2 .no{background:linear-gradient(135deg,#4da3ff,#2f7fd6)}
+  .orange .card h2 .no{background:linear-gradient(135deg,#f5a623,#d88a0e);color:#1a1206}
+  .card h2 .hint{font-size:11px;color:var(--muted);font-weight:400;margin-left:auto}
+
+  .reason{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;padding:11px 12px;border-radius:10px;background:var(--panel2);border:1px solid transparent}
+  .reason .idx{flex:0 0 24px;height:24px;border-radius:7px;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px}
+  .blue .reason .idx{background:rgba(84,168,255,.16);color:var(--blue)}
+  .orange .reason .idx{background:rgba(245,166,35,.16);color:var(--orange)}
+  .reason .txt{font-size:13.5px;color:#d2d9e4}
+  .blue .reason .txt b{color:var(--blue)}
+  .orange .reason .txt b{color:var(--orange)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  thead th{color:var(--sub);font-weight:600;background:var(--panel2);font-size:11.5px}
+  td b{color:var(--txt)}
+  td .tm{font-variant-numeric:tabular-nums;color:var(--sub);white-space:nowrap}
+
+  .tag{display:inline-block;font-size:10.5px;padding:2px 8px;border-radius:20px;font-weight:600;white-space:nowrap;line-height:1.5}
+  .tag-up{background:rgba(229,72,77,.14);color:#ff7a7e;border:1px solid rgba(229,72,77,.42)}
+  .tag-down{background:rgba(47,184,117,.14);color:#4fd699;border:1px solid rgba(47,184,117,.42)}
+  .tag-neu{background:rgba(152,164,182,.12);color:var(--sub);border:1px solid var(--border)}
+  .tag-strong{background:rgba(229,72,77,.22);color:#ff7a7e;border:1px solid var(--up);font-weight:700}
+
+  .quote{border-left:4px solid var(--blue);background:var(--panel2);padding:12px 14px;border-radius:0 9px 9px 0;font-size:13px;color:#c9d0dc;margin:14px 0 2px}
+  .orange .quote{border-left-color:var(--orange)}
+  .quote b{color:var(--blue)}
+  .orange .quote b{color:var(--orange)}
+  .quote.gold{border-left-color:var(--gold)}
+  .quote.gold b{color:var(--gold)}
+
+  .inst-card{display:flex;gap:12px;align-items:flex-start;padding:11px 13px;border-radius:10px;background:var(--panel2);border:1px solid var(--border);margin-bottom:10px}
+  .inst-card .org{flex:0 0 88px;font-size:12.5px;font-weight:800;color:var(--blue);line-height:1.4}
+  .orange .inst-card .org{color:var(--orange)}
+  .inst-card .org .d{display:block;font-size:10.5px;color:var(--muted);font-weight:400;margin-top:1px}
+  .inst-card .view{font-size:12.5px;color:#d2d9e4}
+  .inst-card .view b{color:var(--blue)}
+  .orange .inst-card .view b{color:var(--orange)}
+
+  .zsxq{display:flex;flex-direction:column;gap:12px}
+  .z-card{background:var(--panel2);border:1px solid var(--border);border-radius:11px;padding:14px 15px}
+  .z-card .z-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+  .z-card .z-badge{font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:6px;background:rgba(232,184,75,.16);color:var(--gold);border:1px solid rgba(232,184,75,.35)}
+  .z-card .z-group{font-size:12.5px;font-weight:700}
+  .z-card .z-time{font-size:10.5px;color:var(--muted);margin-left:auto}
+  .z-card p{font-size:12.5px;color:#ccd4e0;line-height:1.75}
+  .z-card p b{color:var(--gold)}
+
+  .verdict{background:linear-gradient(135deg,#1a2230,#141a24);border:1px solid #2a3550}
+  .verdict .main{font-size:14px;font-weight:700;color:var(--txt);margin-bottom:14px;padding:13px 14px;background:var(--panel2);border-radius:10px;border-left:4px solid var(--up);line-height:1.75}
+  .verdict .main b{color:var(--up)}
+  .verdict ul{padding-left:0;font-size:12.5px;color:#c9d0dc;list-style:none}
+  .verdict li{margin-bottom:9px;padding-left:20px;position:relative;line-height:1.7}
+  .verdict li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:2px;background:var(--blue)}
+  .orange .verdict li::before{background:var(--orange)}
+  .verdict li .k{font-weight:700;color:var(--txt)}
+
+  .footer{text-align:center;color:var(--muted);font-size:11px;margin-top:12px;line-height:1.8;padding:0 16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Commodity Daily</div>
+    <h1>铜 · 原油 日报</h1>
+    <div class="date">2026-09-11 周五 · 晚间版</div>
+    <div class="src">
+      <span class="pill">华尔街见闻</span><span class="pill">market-delta 实时快讯</span><span class="pill">Wind 海外机构</span><span class="pill">知识星球</span>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active blue" onclick="sw(0)">🛢️ 原油日报<span class="sub">冲高回落 · 布油 105 当周仍涨约 10%</span></div>
+    <div class="tab orange" onclick="sw(1)">🟠 铜市日报<span class="sub">延续回调 · 伦铜 14,052 破 14000 收回</span></div>
+  </div>
+
+  <!-- ============ 原油 ============ -->
+  <div class="pane active blue" id="p0">
+    <div class="hero">
+      <div class="kpi"><div class="v down">$105.28</div><div class="l">布伦特（盘中 109.97 回落）</div></div>
+      <div class="kpi"><div class="v alt down">$100.95</div><div class="l">WTI（盘中破 99 收回）</div></div>
+      <div class="kpi"><div class="v">-250万</div><div class="l">IEA 下调 2026 需求</div></div>
+      <div class="kpi"><div class="v alt">+10%</div><div class="l">当周累计涨幅</div></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">一</span>核心结论：油价冲高回落但处高位的 5 个逻辑</h2>
+      <div class="reason"><div class="idx">1</div><div class="txt"><b>冲高回落但本周仍大涨</b>——布油盘中 109.97（四个月新高）后跳水，收 105.28，当周仍涨约 7.5-10%。</div></div>
+      <div class="reason"><div class="idx">2</div><div class="txt"><b>地缘缓和预期</b>——海湾六国外长与伊朗外长 9/14 塞拉莱会晤，推动霍尔木兹临时协议。</div></div>
+      <div class="reason"><div class="idx">3</div><div class="txt"><b>IEA 缺口扩大</b>——供应 -570 万、需求 -250 万桶/日，缺口扩至 170-175 万桶。</div></div>
+      <div class="reason"><div class="idx">4</div><div class="txt"><b>库存持续消耗</b>——8 月 -9,500 万桶，自 2 月累计 -5.07 亿桶。</div></div>
+      <div class="reason"><div class="idx">5</div><div class="txt"><b>通胀-加息压制</b>——核心 CPI 0.3% 超预期，加息 67.4%，但柴油 6.0556 美元历史新高。</div></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">二</span>近 5 天海外机构观点 <span class="hint">Wind</span></h2>
+      <div class="inst-card"><div class="org">高盛<span class="d">9/9</span></div><div class="view">基准 85/80；升级布油冲 <b>120 美元</b>。</div></div>
+      <div class="inst-card"><div class="org">美国银行<span class="d">9/8</span></div><div class="view">冲突延续 <b>95-120</b>，极端 150 美元。</div></div>
+      <div class="inst-card"><div class="org">摩根大通<span class="d">9/9</span></div><div class="view">"永久冲突"明年均值 <b>87</b>、基准 63。</div></div>
+      <div class="inst-card"><div class="org">IEA<span class="d">9/11</span></div><div class="view">需求 -250 万、供应 -570 万，<b>缺口扩大</b>。</div></div>
+      <div class="inst-card"><div class="org">盛宝银行<span class="d">9/11</span></div><div class="view">海湾-伊朗会晤希望致油价走软。</div></div>
+      <div class="quote gold">共识：目标价 90-120（美银极端 150）；IEA"供应收缩&gt;需求收缩"，但缓和预期 + 需求下调压制。</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">三</span>知识星球深度观点 <span class="hint">近期时效</span></h2>
+      <div class="zsxq">
+        <div class="z-card">
+          <div class="z-head"><span class="z-badge">小牛研报纪要</span><span class="z-group">看 Q4 油价冲 110 美元</span><span class="z-time">9/9 07:53</span></div>
+          <p>"继续推荐宝丰能源、中国海油"；自 8 月下旬<b>完全是原油多头</b>，看 Q4 冲 <b>110 美元</b>。</p>
+        </div>
+        <div class="z-card">
+          <div class="z-head"><span class="z-badge">Orange 期权</span><span class="z-group">原油近月隐波"极高"</span><span class="z-time">9/10 11:28</span></div>
+          <p>原油近月隐波极高但根号 T 监测仍正常，围绕隐波偏离与套利收益讨论。</p>
+        </div>
+        <div class="z-card">
+          <div class="z-head"><span class="z-badge">刘煜辉之宏观高维</span><span class="z-group">海峡控制权"最后一博"</span><span class="z-time">中长期框架</span></div>
+          <p>顺则中枢不回 70，不顺则 <b>150、200 皆有可能</b>；中长期"金油比回不去"，勿做长线多油。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">四</span>今日实时快讯 <span class="hint">截止 9/11 21:20</span></h2>
+      <table>
+        <thead><tr><th style="width:52px">时间</th><th>事件</th><th style="width:72px">标签</th></tr></thead>
+        <tbody>
+        <tr><td class="tm">20:30</td><td><b>美国 8 月 CPI：核心环比 0.3% 超预期</b>，油价跌超 3%</td><td><span class="tag tag-down">宏观压制</span></td></tr>
+        <tr><td class="tm">16:00</td><td><b>IEA 月报</b>：需求 -250 万、供应 -570 万，缺口扩至 170-175 万桶</td><td><span class="tag tag-up">缺口扩大</span></td></tr>
+        <tr><td class="tm">午后</td><td><b>布伦特从 109.97 跳水至 103.54（-3.8%）</b>，WTI 破 99</td><td><span class="tag tag-down">冲高回落</span></td></tr>
+        <tr><td class="tm">13:00</td><td><b>胡塞夺取曼德海峡丕林岛</b></td><td><span class="tag tag-up">地缘升级</span></td></tr>
+        <tr><td class="tm">盘中</td><td>美国柴油均价 <b>6.0556 美元/加仑</b>，史上首次破 6</td><td><span class="tag tag-up">成品油短缺</span></td></tr>
+        </tbody>
+      </table>
+      <div class="quote">布油 <b>105.28</b>（盘中 109.97 回落）/ WTI <b>100.95</b>（破 99 收回），当周仍涨约 7.5-10%。</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">五</span>核心逻辑增强 vs 削弱</h2>
+      <table>
+        <thead><tr><th>逻辑</th><th>9/10</th><th>9/11</th><th style="width:68px">变化</th></tr></thead>
+        <tbody>
+        <tr><td><b>霍尔木兹地缘溢价</b></td><td>美伊海上互袭</td><td>海湾-伊朗会晤 + 胡塞停火 → 缓和</td><td><span class="tag tag-down">削弱 ↓</span></td></tr>
+        <tr><td><b>供给收缩</b></td><td>沙特 623.8 万桶</td><td>IEA 供应 -570 万、缺口扩大</td><td><span class="tag tag-up">增强 ↑</span></td></tr>
+        <tr><td><b>库存去化</b></td><td>EIA -39.1 万桶</td><td>IEA 8 月 -9,500 万、累计 -5.07 亿桶</td><td><span class="tag tag-up">增强 ↑</span></td></tr>
+        <tr><td><b>成品油短缺</b></td><td>柴油 5.94</td><td>柴油 6.0556 历史新高</td><td><span class="tag tag-up">增强 ↑</span></td></tr>
+        <tr><td><b>需求端</b></td><td>OPEC 下调 38 万桶</td><td>IEA 下调至 -250 万桶/日</td><td><span class="tag tag-down">削弱 ↓</span></td></tr>
+        <tr><td><b>通胀-加息螺旋</b></td><td>PPI 5.4%、加息 70%</td><td>核心 CPI 0.3%、加息 67.4%</td><td><span class="tag tag-down">削弱 ↓</span></td></tr>
+        <tr><td><b>缓和信号</b></td><td>无实质缓和</td><td>海湾-伊朗会晤、胡塞停火</td><td><span class="tag tag-down">削弱 ↓</span></td></tr>
+        <tr><td><b>整体净影响</b></td><td colspan="2" style="text-align:center">—</td><td><span class="tag tag-strong">缓和主导回落，缺口仍扩大</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card verdict">
+      <h2><span class="no">七</span>综合结论</h2>
+      <div class="main">主线 = <b>冲高回落</b>：海湾-伊朗 9/14 会晤缓和预期 + IEA 需求下调 + 核心 CPI 超预期 → 油价从 109.97 回落至 105；但 <b>IEA 缺口扩大 + 库存消耗</b>支撑紧平衡。</div>
+      <ul>
+        <li><span class="k">方向</span>：强势行情技术性回吐，布油回落至 105，当周仍涨约 10%，中长期偏多未改。</li>
+        <li><span class="k">机构共识</span>：目标价 90-120；IEA"供应收缩&gt;需求收缩"，成品油更短缺。</li>
+        <li><span class="k">星球视角</span>：小牛看 Q4 冲 110；刘煜辉"海峡最后一博"偏强，中长期去油化天花板。</li>
+        <li><span class="k">风险</span>：可被"停火/协议"瞬间回吐；9/15-16 议息（加息 67.4%）。</li>
+        <li><span class="k">操作</span>：地缘事件型交易，严控仓位；不在 110 上方追多，破 100 看 95。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============ 铜 ============ -->
+  <div class="pane orange" id="p1">
+    <div class="hero">
+      <div class="kpi orange"><div class="v down">$14,052</div><div class="l">伦铜收盘（盘中破 14000 收回）</div></div>
+      <div class="kpi orange"><div class="v down">¥108,663</div><div class="l">沪铜主力（-2.45%）</div></div>
+      <div class="kpi orange"><div class="v">50%</div><div class="l">LME 注销仓单占比</div></div>
+      <div class="kpi orange"><div class="v">67.4%</div><div class="l">美联储加息概率</div></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">一</span>核心结论：铜价延续回调的 5 个核心逻辑</h2>
+      <div class="reason"><div class="idx">1</div><div class="txt"><b>关税预期生变坐实</b>——白宫未决精炼铜关税，伦铜收 14,052，两日从 14,875 回落约 5.5%。</div></div>
+      <div class="reason"><div class="idx">2</div><div class="txt"><b>核心 CPI 超预期</b>——8 月核心 CPI 环比 0.3%，加息概率 67.4%，美元/美债高位压制。</div></div>
+      <div class="reason"><div class="idx">3</div><div class="txt"><b>COMEX 69.6 万吨 = 悬顶抛压</b>——升水从 436 收窄至 41 美元。</div></div>
+      <div class="reason"><div class="idx">4</div><div class="txt"><b>高位获利兑现 + CTA 踩踏</b>——麦克莫兰铜金跌超 6%、南方铜业跌超 7%。</div></div>
+      <div class="reason"><div class="idx">5</div><div class="txt"><b>供给硬约束托底</b>——LME 去库、注销仓单 50%、TC 负值，盘中破 14,000 被托回。</div></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">二</span>近 5 天海外机构观点 <span class="hint">Wind</span></h2>
+      <div class="inst-card"><div class="org">花旗<span class="d">9/8</span></div><div class="view">年底 <b>15,000</b>，超预期 <b>17,000 美元</b>。</div></div>
+      <div class="inst-card"><div class="org">瑞银财富<span class="d">9/8</span></div><div class="view">未来几季 <b>15,500 美元</b>，最乐观。</div></div>
+      <div class="inst-card"><div class="org">摩根士丹利<span class="d">9/10</span></div><div class="view">2026 数据中心铜 <b>74 万吨</b>，矿山 2017 首次萎缩。</div></div>
+      <div class="inst-card"><div class="org">国金证券<span class="d">9/8</span></div><div class="view">看好铜价突破 <b>2 万美金</b>。</div></div>
+      <div class="inst-card"><div class="org">盛宝银行<span class="d">9/11</span></div><div class="view">白宫关税停滞，打破单边看涨逻辑。</div></div>
+      <div class="inst-card"><div class="org">泽锡哥<span class="d">9/10</span></div><div class="view">不喊空也不追多，等关税方向。</div></div>
+      <div class="quote gold">共识：长期 15,000-15,500（国金 2 万）未变，短期焦点转向"关税 + CPI 加息路径"。</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">三</span>知识星球深度观点 <span class="hint">近期时效</span></h2>
+      <div class="zsxq">
+        <div class="z-card">
+          <div class="z-head"><span class="z-badge">Orange 期权</span><span class="z-group">铜近月隐波"低估"</span><span class="z-time">9/9 22:09</span></div>
+          <p>铜外盘升波、远月升波、<b>近月降波</b>，近月隐波低估，双买做多铜隐波。</p>
+        </div>
+        <div class="z-card">
+          <div class="z-head"><span class="z-badge">小牛研报纪要·国金金属铜</span><span class="z-group">非美供给紧张</span><span class="z-time">9/8</span></div>
+          <p>智利 8 月出口 46.25 亿美元、美 7 月进口首破 22 万吨，<b>看好突破 2 万美金</b>。</p>
+        </div>
+        <div class="z-card">
+          <div class="z-head"><span class="z-badge">刘煜辉之宏观高维</span><span class="z-group">铜短线"需求衰退"</span><span class="z-time">中长期框架</span></div>
+          <p>铜短线交易<b>供给冲击下的需求衰退</b>，与油<b>强负相关</b>；四季度重点关注。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">四</span>今日实时快讯 <span class="hint">截止 9/11 21:20</span></h2>
+      <table>
+        <thead><tr><th style="width:52px">时间</th><th>事件</th><th style="width:72px">标签</th></tr></thead>
+        <tbody>
+        <tr><td class="tm">20:30</td><td><b>美国 8 月 CPI：核心环比 0.3% 超预期</b>，加息 67.4%</td><td><span class="tag tag-down">宏观逆风</span></td></tr>
+        <tr><td class="tm">收盘</td><td><b>伦铜收 14,052</b>，盘中破 14,000 收回</td><td><span class="tag tag-down">延续回调</span></td></tr>
+        <tr><td class="tm">收盘</td><td>沪铜 2610 收 <b>108,663（-2.45%）</b>，升水收窄 80-120</td><td><span class="tag tag-down">现货走弱</span></td></tr>
+        <tr><td class="tm">13:05</td><td><b>PCB 概念拉升、铜箔/CCL 涨价</b>，超声电子 5 天 3 板</td><td><span class="tag tag-up">需求传导</span></td></tr>
+        <tr><td class="tm">23:13*</td><td><b>白宫未确认精炼铜关税</b>，纽约铜 6.89→6.54</td><td><span class="tag tag-down">关税降温</span></td></tr>
+        </tbody>
+      </table>
+      <div class="quote">伦铜收 <b>$14,052</b>（盘中破 14,000 收回）；沪铜 <b>108,663</b>（-2.45%）。*为 9/10 夜盘事件。</div>
+    </div>
+
+    <div class="card">
+      <h2><span class="no">五</span>核心逻辑增强 vs 削弱</h2>
+      <table>
+        <thead><tr><th>逻辑</th><th>9/10</th><th>9/11</th><th style="width:68px">变化</th></tr></thead>
+        <tbody>
+        <tr><td><b>关税套利囤积</b></td><td>纽约铜 6.894 新高</td><td>白宫未决、COMEX 转抛压</td><td><span class="tag tag-down">削弱 ↓↓</span></td></tr>
+        <tr><td><b>机构预期</b></td><td>智利央行 6.10</td><td>长期未变，短期被压制</td><td><span class="tag tag-down">削弱 ↓</span></td></tr>
+        <tr><td><b>矿端供给收缩</b></td><td>TC -200.31</td><td>大摩 2017 首次萎缩、注销仓单 50%</td><td><span class="tag tag-up">增强 ↑</span></td></tr>
+        <tr><td><b>中国抢货</b></td><td>沪铜 112,200</td><td>升水收窄、高价抑制采购</td><td><span class="tag tag-down">削弱 ↓</span></td></tr>
+        <tr><td><b>宏观逆风</b></td><td>PPI 5.4%、加息 70%</td><td>核心 CPI 0.3%、加息 67.4%</td><td><span class="tag tag-down">削弱 ↓</span></td></tr>
+        <tr><td><b>底部实物支撑</b></td><td>LME 去库</td><td>盘中破 14,000 托回、注销仓单 50%</td><td><span class="tag tag-up">增强 ↑</span></td></tr>
+        <tr><td><b>整体净影响</b></td><td colspan="2" style="text-align:center">—</td><td><span class="tag tag-strong">宏观利空主导，底部支撑渐显</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card verdict">
+      <h2><span class="no">七</span>综合结论</h2>
+      <div class="main">主线 = <b>白宫关税犹豫坐实</b> + 核心 CPI 超预期推升加息 + 高位获利兑现 → 延续回调；但 <b>LME 去库 + 矿端硬约束托底</b>。</div>
+      <ul>
+        <li><span class="k">方向</span>：短期高位回调，伦铜收 14,052、沪铜 10.87 万，进入高位宽幅震荡。</li>
+        <li><span class="k">机构共识</span>：长期 15,000-15,500 未变，短期聚焦"关税 + CPI 加息路径"。</li>
+        <li><span class="k">星球视角</span>：泽锡哥"不喊空不追多"；刘煜辉提示铜与油强负相关。</li>
+        <li><span class="k">风险</span>：关税"犹豫"≠"放弃"，9/28 前白宫表态都引发剧烈波动。</li>
+        <li><span class="k">操作</span>：高位严控仓位，跌破 14,000 看 13,600-14,100。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">生成时间：2026-09-11 21:20 · 数据截止 9/11 21:20（晚间版）<br>数据源：华尔街见闻 · market-delta 实时快讯 · Wind 财经新闻 · 知识星球</div>
+</div>
+
+<script>
+function sw(i){
+  document.querySelectorAll('.tab').forEach((t,j)=>t.className='tab '+(j===0?'blue':'orange')+(j===i?' active':''));
+  document.querySelectorAll('.pane').forEach((p,j)=>p.className='pane '+(j===0?'blue':'orange')+(j===i?' active':''));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
