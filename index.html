@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>铜 · 原油日报 2026-10-15</title>
+<title>铜 · 原油日报 2026-10-16</title>
 <style>
   :root{
     --orange:#f5a623; --blue:#4da3ff; --up:#e5484d; --down:#2fb875; --gold:#e8b84b;
@@ -16,7 +16,7 @@
   .topbar .title{text-align:center;font-size:14px;font-weight:700;padding:12px 0 6px;letter-spacing:.5px}
   .topbar .date{text-align:center;font-size:11px;color:var(--sub);padding-bottom:8px}
   .tabs{display:flex;gap:8px;padding:0 12px 10px}
-  .tab{flex:1;text-align:center;padding:10px 0;border-radius:10px;font-size:15px;font-weight:700;border:1px solid var(--border);background:var(--panel);color:var(--sub);transition:all .2s}
+  .tab{flex:1;text-align:center;padding:10px 0;border-radius:10px;font-size:15px;font-weight:700;border:1px solid var(--border);background:var(--panel);color:var(--sub);transition:all .2s;cursor:pointer}
   .tab.active-copper{background:linear-gradient(135deg,#f5a623,#d88a0e);color:#1a1206;border-color:transparent;box-shadow:0 2px 12px rgba(245,166,35,.4)}
   .tab.active-oil{background:linear-gradient(135deg,#4da3ff,#2f7fd6);color:#fff;border-color:transparent;box-shadow:0 2px 12px rgba(77,163,255,.4)}
 
@@ -78,189 +78,210 @@
 <body>
   <div class="topbar">
     <div class="title">铜 · 原油 每日行情日报</div>
-    <div class="date">2026年10月15日 · 周四（Escondida 协议缓和，霍尔木兹货船沉没 + 柴油结构性短缺）</div>
+    <div class="date">2026-10-16 · 周五 · 数据截止 15:40</div>
     <div class="tabs">
-      <div class="tab active-copper" id="tabCopper" onclick="sw('copper')">铜市日报</div>
-      <div class="tab" id="tabOil" onclick="sw('oil')">原油日报</div>
+      <div class="tab active-copper" id="tab-copper" onclick="switchTab('copper')">铜</div>
+      <div class="tab" id="tab-oil" onclick="switchTab('oil')">原油</div>
     </div>
   </div>
 
-  <!-- ================= 铜 ================= -->
-  <div class="page active" id="copper">
+  <!-- ============ 铜 ============ -->
+  <div class="page active" id="page-copper">
     <div class="kpis">
-      <div class="kpi"><div class="v c">$14,622</div><div class="l">伦铜（逼近历史高点）</div></div>
-      <div class="kpi"><div class="v c">$13,500</div><div class="l">BMI 2026 均价目标</div></div>
-      <div class="kpi"><div class="v c">-231.68</div><div class="l">现货 TC（美元/吨·新低）</div></div>
-      <div class="kpi"><div class="v c">$22,050</div><div class="l">德银 2027Q2 目标价</div></div>
+      <div class="kpi"><div class="v down">$14,309</div><div class="l">伦铜隔夜 -1.25%</div></div>
+      <div class="kpi"><div class="v down">-0.71%</div><div class="l">沪铜主力 109,860</div></div>
+      <div class="kpi"><div class="v c">+2万吨</div><div class="l">上期所库存单周</div></div>
+      <div class="kpi"><div class="v c">-238</div><div class="l">TC 现货（美元/吨）</div></div>
     </div>
 
     <div class="sec copper">
-      <h2><span class="no">一</span>核心结论：看多铜的 5 个核心理由</h2>
-      <div class="r"><div class="i">1</div><div><b>Escondida 罢工风险边际缓解、但矿端"三矿叠加"未解</b>——BHP 与主管人员达成初步劳资协议，有望避免全球最大铜矿罢工；Centinela 罢工持续 + El Teniente 滑坡，智利 2026 产量预计 -2.6%。</div></div>
-      <div class="r"><div class="i">2</div><div><b>冶炼主动减产、精铜供应刚性收缩</b>——TC 跌至 -231.68 美元/吨再创新低，9 月冶炼亏损 4129 元/吨，SMM 预测 10 月电解铜产量 108.47 万吨年内低点。</div></div>
-      <div class="r"><div class="i">3</div><div><b>海外机构集体上修</b>——BMI 上调 2026 均价至 13,500 美元，德银 22,050，瑞银"最高确信度"缺口延续至 2030 年代初。</div></div>
-      <div class="r"><div class="i">4</div><div><b>库存低位 + 铜箔链量价齐升</b>——LME 库存 23.3 万吨六周新低，建滔第 8 涨 15%、松下 2027 CCL 涨 200%、英伟达 USFP 利好 HVLP5 铜箔。</div></div>
-      <div class="r"><div class="i">5</div><div><b>AI 数据中心需求引擎未熄</b>——英伟达 NVLink 铜互连路线、OCP 机架级液冷母排 5000A 水冷铜条。</div></div>
+      <h2><span class="no">一</span>核心结论：高位回落 5 逻辑</h2>
+      <div class="r"><div class="i">1</div><div><b>上期所库存单周 +2 万吨终结四周去库</b>（38,744→58,744 吨），现货溢价 1,080→420 元，近月挤仓支撑松动。</div></div>
+      <div class="r"><div class="i">2</div><div><b>Escondida 罢工风险解除</b>，BHP 与矿方达成初步劳资协议，供应中断担忧缓解引发获利回吐。</div></div>
+      <div class="r"><div class="i">3</div><div><b>加息担忧升温</b>，CPI 3.7% + PPI 6.3% 超预期，美元 101.84 压制有色估值。</div></div>
+      <div class="r"><div class="i">4</div><div><b>现货高位抑制下游</b>，线缆开工率 -1.94pct 至 60.19%，旺季成色弱。</div></div>
+      <div class="r"><div class="i">5</div><div><b>矿端紧平衡托底</b>，TC -238 创 2007 来新低、LME 库存续减 1,400 吨。</div></div>
     </div>
 
     <div class="sec copper">
       <h2><span class="no">二</span>近 5 天海外机构观点</h2>
-      <div class="card"><div class="org">BMI<span class="d">10/14</span></div><div>上调 2026 铜均价 12,700 → <b>13,500 美元</b>（+800）。</div></div>
-      <div class="card"><div class="org">德意志银行<span class="d">10/11</span></div><div>伦铜 2027Q2 目标 <b>22,050 美元</b>（+50%），库存"前所未有低位"。</div></div>
-      <div class="card"><div class="org">瑞银<span class="d">10/11</span></div><div>铜"最高确信度"，缺口延续至 2030 年代初，首选 Freeport/First Quantum。</div></div>
-      <div class="card"><div class="org">摩根大通<span class="d">近期</span></div><div>2026Q4 LME 铜均价约 14,800 美元；Centinela 罢工"两周内冲击产量"。</div></div>
-      <div class="card"><div class="org">花旗<span class="d">近期</span></div><div>Q4 均价 14,500、年底 15,000，超预期情景 17,000。</div></div>
-      <div class="card"><div class="org">高盛 / 麦格理<span class="d">近期</span></div><div>高盛 13,700 警示"关税溢价"；麦格理 13,165 偏谨慎。</div></div>
-      <div class="quote">共识：目标价中枢 <b>13,500-14,800 美元</b>，德银看 22,050，分歧在关税溢价与 AI 需求能否接住高价。</div>
+      <div class="card"><div class="org">花旗<span class="d">10/16</span></div>短期中性，14,000-15,000 美元，6-12 个月看 15,000。</div>
+      <div class="card"><div class="org">瑞银<span class="d">10/14</span></div>年底 15,000、2027 年 6-9 月 15,500 美元。</div>
+      <div class="card"><div class="org">澳新银行<span class="d">10/14</span></div>年底 14,500、2027 年初破 15,000 美元。</div>
+      <div class="card"><div class="org">BMI<span class="d">10/14</span></div>上调 2026 均价至 13,500 美元（+800）。</div>
+      <div class="card"><div class="org">德银<span class="d">10/14</span></div>2027Q2 铜价 22,050 美元"历史性金属争夺战"。</div>
+      <div class="card"><div class="org">摩根大通<span class="d">10/14</span></div>Q4 LME 均价约 14,800 美元。</div>
+      <div class="card"><div class="org">高盛<span class="d">10/14</span></div>Q4 伦铜 13,700 美元，含关税溢价，或回踩 12,800。</div>
+      <div class="quote">共识：锚定 <b>14,000-15,500 美元</b>，德银看 22,050；花旗转"短期中性"是边际转弱信号。</div>
     </div>
 
     <div class="sec copper">
       <h2><span class="no">三</span>知识星球深度观点</h2>
-      <div class="card"><div class="org">研报平权 / 404K<span class="d">10-14</span></div><div><b>Escondida 初步劳资协议</b>：BHP 与主管人员达成初步协议，有望避免全球最大铜矿罢工，仍需工会批准。</div></div>
-      <div class="card"><div class="org">404K Semi-Ai<span class="d">10-15</span></div><div><b>英伟达 USFP 利好 HVLP 铜箔</b>：化解 CPO 替代担忧，MicroThin 铜箔规格升至 HVLP5 以上。</div></div>
-      <div class="card"><div class="org">404K Semi-Ai<span class="d">10-15</span></div><div><b>M6–M7 覆铜板"存储时刻"</b>：E 玻纤短缺 + 产能挤出，2027 年价格弹性或超 M8+。</div></div>
-      <div class="card"><div class="org">研报平权<span class="d">10-15</span></div><div><b>覆铜板涨价看至 2027H1</b>：瑞银上调 FR4 预测，建滔第 8 次提价 15%、FR4 累涨 220%。</div></div>
-      <div class="card"><div class="org">研报平权<span class="d">10-15</span></div><div><b>松下机电 CCL 涨价 200%</b>：2027/1/1 起部分通用多层铜箔基板价格上调至原价 3 倍。</div></div>
+      <div class="card"><div class="org">研报平权<span class="d">10/14</span></div>Escondida 达成<b>初步劳资协议</b>，有望避免全球最大铜矿罢工。</div>
+      <div class="card"><div class="org">研报平权<span class="d">10/15</span></div>英伟达 + 思科 USFP 标准，化解三井金属铜箔 CPO 替代担忧。</div>
+      <div class="card"><div class="org">404K Semi-Ai<span class="d">10/15</span></div>M6-M7 覆铜板"存储时刻"，2027 弹性或超 M8+。</div>
+      <div class="card"><div class="org">404K Semi-Ai<span class="d">10/15</span></div>南亚涨停创新高，CCL 涨价 20-25% 驱动电子材料利润 +96%。</div>
     </div>
 
     <div class="sec copper">
-      <h2><span class="no">四</span>今日实时快讯（倒序）</h2>
+      <h2><span class="no">四</span>今日实时快讯</h2>
       <table>
-        <thead><tr><th style="width:48px">时间</th><th>事件</th></tr></thead>
+        <thead><tr><th style="width:44px">时间</th><th>事件</th><th style="width:70px">标签</th></tr></thead>
         <tbody>
-        <tr><td class="tm">盘后</td><td>沪指险守 3700 点，A股超 5100 股飘绿、成交 1.65 万亿</td></tr>
-        <tr><td class="tm">盘后</td><td><b>美国 9 月 CPI 3.7% 超预期</b>，10 月加息概率一度五成，美元创 18 个月新高</td></tr>
-        <tr><td class="tm">盘后</td><td>标普 500 跌 1.1%、纳指跌近 2%，芯片指数六连跌、CoreWeave 暴跌 15%</td></tr>
-        <tr><td class="tm">早盘</td><td><b>BMI 上调 2026 铜均价至 13,500 美元（+800）</b></td></tr>
-        <tr><td class="tm">早盘</td><td>SMM 预测 10 月电解铜产量 <b>108.47 万吨年内低点</b></td></tr>
-        <tr><td class="tm">早盘</td><td><b>现货 TC -231.68 美元/吨再创历史新低</b>、9 月冶炼亏损 4129 元/吨</td></tr>
+        <tr><td class="tm">15:03</td><td>伦铜 14,420 涨 111、沪铜收 109,860 涨 110</td><td><span class="tag t-neu">企稳</span></td></tr>
+        <tr><td class="tm">15:00</td><td>沪铜主力 109,860 -0.71%，失守 11 万</td><td><span class="tag t-down">回落</span></td></tr>
+        <tr><td class="tm">12:00</td><td>LME 铜库存 226,600 -1,400，美元 101.84</td><td><span class="tag t-down">压制</span></td></tr>
+        <tr><td class="tm">09:45</td><td>长江现货 1#铜 110,570-110,610 跌 100</td><td><span class="tag t-down">松动</span></td></tr>
+        <tr><td class="tm">07:09</td><td>花旗对铜短期中性，14,000-15,000 美元</td><td><span class="tag t-neu">中性</span></td></tr>
+        </tbody>
+      </table>
+      <div class="quote">关键价：伦铜 <b>$14,309</b>；沪铜 <b>109,860</b>；长江现货 <b>110,590</b>；TC <b>-238</b>。</div>
+    </div>
+
+    <div class="sec copper">
+      <h2><span class="no">五</span>昨天（10/15）参照</h2>
+      <table>
+        <thead><tr><th style="width:76px">事件</th><th>内容</th></tr></thead>
+        <tbody>
+        <tr><td><b>伦铜冲高</b></td><td>盘中 14,622 逼近历史高点</td></tr>
+        <tr><td><b>机构上修</b></td><td>BMI 13,500、德银 22,050、瑞银最高确信度</td></tr>
+        <tr><td><b>矿端扰动</b></td><td>Centinela 罢工 + El Teniente 滑坡</td></tr>
+        <tr><td><b>铜箔涨价</b></td><td>建滔 +15%、松下 CCL +200%</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="sec copper">
-      <h2><span class="no">六</span>核心逻辑增强 vs 削弱</h2>
+      <h2><span class="no">六</span>逻辑增强 vs 削弱</h2>
       <table>
-        <thead><tr><th>逻辑</th><th style="width:70px">变化</th></tr></thead>
+        <thead><tr><th>逻辑</th><th>变化</th></tr></thead>
         <tbody>
-        <tr><td>Escondida 罢工风险</td><td><span class="tag t-neu">持平 →</span></td></tr>
-        <tr><td>Centinela/El Teniente 矿端</td><td><span class="tag t-up">增强 ↑</span></td></tr>
-        <tr><td>冶炼主动减产</td><td><span class="tag t-up">增强 ↑</span></td></tr>
-        <tr><td>海外机构上修</td><td><span class="tag t-up">增强 ↑</span></td></tr>
-        <tr><td>铜箔/CCL 涨价</td><td><span class="tag t-up">增强 ↑</span></td></tr>
-        <tr><td>宏观逆风（加息/美元）</td><td><span class="tag t-down">削弱 ↓</span></td></tr>
-        <tr><td>AI 交易退潮</td><td><span class="tag t-down">削弱 ↓</span></td></tr>
-        <tr><td>整体净影响</td><td><span class="tag t-strong">高位震荡偏强 ↑</span></td></tr>
+        <tr><td>矿端紧平衡（TC -238）</td><td><span class="tag t-up">增强↑</span></td></tr>
+        <tr><td>Escondida 罢工解除</td><td><span class="tag t-down">削弱↓</span></td></tr>
+        <tr><td>上期所库存 +2 万吨</td><td><span class="tag t-down">削弱↓↓</span></td></tr>
+        <tr><td>现货升水骤缩</td><td><span class="tag t-down">削弱↓</span></td></tr>
+        <tr><td>花旗转中性</td><td><span class="tag t-down">削弱↓</span></td></tr>
+        <tr><td>铜箔/CCL 涨价</td><td><span class="tag t-up">增强↑</span></td></tr>
+        <tr><td><b>整体净影响</b></td><td><span class="tag t-strong">利空略占优↓</span></td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="verdict">
-      <div class="main">主线 = <b>供给硬约束全面验证</b> + 机构目标价集体上修 + 铜箔链量价齐升，但面临 CPI 超预期加息与 AI 退潮的双重逆风。</div>
+    <div class="sec copper verdict">
+      <h2><span class="no">七</span>综合结论</h2>
+      <div class="main">主线 = <b>库存暴增 2 万吨 + Escondida 罢工解除 + 强美元</b>，铜价从逼近历史高点转向高位回落整固。</div>
       <ul>
-        <li><span class="k">方向</span>：高位震荡偏强，伦铜逼近历史高点 14,622 美元/吨。</li>
-        <li><span class="k">机构共识</span>：锚 13,500-14,800，德银看 22,050。</li>
-        <li><span class="k">星球视角</span>：Escondida 协议是当日最大边际变量，铜箔链量价齐升逻辑持续。</li>
-        <li><span class="k">风险点</span>：CPI 超预期加息、美元 18 个月新高、AI 退潮、高铜价抑制采购。</li>
-        <li><span class="k">操作</span>：顺势偏多，回调不破 14,000 视为健康调整，警惕短线回调。</li>
+        <li><span class="k">方向</span>：高位震荡偏弱，伦铜失守 14,400、沪铜失守 11 万；矿端 TC 历史新低 + LME 续减限制跌幅。</li>
+        <li><span class="k">机构共识</span>：14,000-15,500 美元，德银看 22,050；花旗"短期中性"边际转弱。</li>
+        <li><span class="k">风险点</span>：库存回补是否延续、美联储 10 月加息、14,600 上方阻力。</li>
+        <li><span class="k">操作</span>：区间操作，回调不破 14,000/108,000 视为健康调整，深跌关注逢低布局。</li>
       </ul>
     </div>
   </div>
 
-  <!-- ================= 原油 ================= -->
-  <div class="page" id="oil">
+  <!-- ============ 原油 ============ -->
+  <div class="page" id="page-oil">
     <div class="kpis">
-      <div class="kpi"><div class="v b">$106</div><div class="l">布伦特（高位震荡）</div></div>
-      <div class="kpi"><div class="v b">$94</div><div class="l">WTI</div></div>
-      <div class="kpi"><div class="v b">3.7%</div><div class="l">美国 9 月 CPI（超预期）</div></div>
-      <div class="kpi"><div class="v b">$100</div><div class="l">瑞银布油年底目标</div></div>
+      <div class="kpi"><div class="v down">$105.68</div><div class="l">布伦特 -0.36%</div></div>
+      <div class="kpi"><div class="v up">$97.97</div><div class="l">WTI +3.03% 三周新高</div></div>
+      <div class="kpi"><div class="v b">+1.90%</div><div class="l">SC 原油 744.3</div></div>
+      <div class="kpi"><div class="v b">970万</div><div class="l">霍尔木兹日运量（桶）</div></div>
     </div>
 
     <div class="sec oil">
-      <h2><span class="no">一</span>核心结论：看多原油的 5 个核心理由</h2>
-      <div class="r"><div class="i">1</div><div><b>伊朗"全天候"监控霍尔木兹、货船再遭袭沉没</b>——GFS Pride 货船沉没，伊朗警告过往船只须获许可，反驳特朗普"美方掌控水道"。</div></div>
-      <div class="r"><div class="i">2</div><div><b>地缘"双轨"拉锯</b>——内塔尼亚胡选举前暂缓打击（推迟两周），但伊朗海上原油出口"清零"、4300 万桶被困海峡以西。</div></div>
-      <div class="r"><div class="i">3</div><div><b>柴油"硬短缺"升级为结构性危机</b>——IEA 警告持续至 2027 下半年，上月柴油出口 -70 万桶/日。</div></div>
-      <div class="r"><div class="i">4</div><div><b>美国 9 月 CPI 3.7% 超预期</b>——能源涨价推动通胀螺旋，10 月加息概率一度五成。</div></div>
-      <div class="r"><div class="i">5</div><div><b>海外机构维持偏多</b>——瑞银年底 100、高盛 12 月 90、美银看突破 150 情景。</div></div>
+      <h2><span class="no">一</span>核心结论：看多 5 理由</h2>
+      <div class="r"><div class="i">1</div><div><b>霍尔木兹两艘商船遇袭沉没</b>，8 起袭击、日运量 970 万桶较战前 -43%，海运成本飙至商品价值 1/3。</div></div>
+      <div class="r"><div class="i">2</div><div><b>EIA 库存暴降 860 万桶</b>，全球缓冲库存 <60 亿桶"最后缓冲"告急。</div></div>
+      <div class="r"><div class="i">3</div><div><b>胡塞首次袭击亚丁总统府</b>，开辟新战线，双航道同时承压。</div></div>
+      <div class="r"><div class="i">4</div><div><b>WTI +3% 站上 97 美元</b>创三周新高，SC 744.3 +1.90%。</div></div>
+      <div class="r"><div class="i">5</div><div><b>风险溢价 22 美元历史级</b>，运费 4→30 美元/桶，恐慌定价兑现。</div></div>
     </div>
 
     <div class="sec oil">
       <h2><span class="no">二</span>近 5 天海外机构观点</h2>
-      <div class="card"><div class="org">瑞银<span class="d">10/13</span></div><div>现货偏紧、风险偏上行，布油年底维持 100 美元。</div></div>
-      <div class="card"><div class="org">高盛<span class="d">10/12</span></div><div>12 月布油 90 美元、2027 均价 80；海湾低 500 万桶则看 125 美元。</div></div>
-      <div class="card"><div class="org">美国银行<span class="d">近期</span></div><div>2026 下半年布油 83 → 95 美元，供应中断持续则突破 150。</div></div>
-      <div class="card"><div class="org">IEA<span class="d">10/14</span></div><div>柴油短缺持续至 2027 下半年，OECD 库存 1989 年以来最低。</div></div>
-      <div class="card"><div class="org">OPEC / IMF<span class="d">10/13</span></div><div>OPEC 上调 2027 需求至 255 万桶/日；IMF 2026 均价 95.74 美元。</div></div>
-      <div class="quote">共识：目标价锚 <b>90-100 美元</b>，一致提示成品油/柴油比原油更短缺。</div>
+      <div class="card"><div class="org">高盛<span class="d">10/12-14</span></div>12 月布油 90、Q4 现货 105、上行情景 125、溢价 22 美元。</div>
+      <div class="card"><div class="org">摩根士丹利<span class="d">10/14</span></div>Q4 布油 100 美元，风险偏上行。</div>
+      <div class="card"><div class="org">瑞银<span class="d">10 月初</span></div>Q4 布油 80→100，新袭击或推至 120。</div>
+      <div class="card"><div class="org">花旗<span class="d">10/16</span></div>Q4 布油 70 美元，供应恢复快。</div>
+      <div class="card"><div class="org">麦格理<span class="d">10/16</span></div>WTI 58 美元目标价。</div>
+      <div class="card"><div class="org">摩根大通<span class="d">10/16</span></div>2026 均价 58、2027 或 30-40。</div>
+      <div class="card"><div class="org">Vitol<span class="d">10/14</span></div>海峡中断油价或冲 200 美元。</div>
+      <div class="quote">共识：多空分歧今年之最——多头 100-120、空头 58-70；唯一致：<b>成品油比原油更短缺</b>。</div>
     </div>
 
     <div class="sec oil">
       <h2><span class="no">三</span>知识星球深度观点</h2>
-      <div class="card"><div class="org">Orange 期权<span class="d">10-15</span></div><div><b>今晚降波最大品种是乙二醇</b>：排除末日轮原油，乙二醇卖购获利，其他品种隐波反而升波。</div></div>
-      <div class="card"><div class="org">Orange 期权<span class="d">10-13</span></div><div><b>甲醇负反馈、转向乙二醇</b>：原油和化工非 1:1 挂钩，乙二醇偏空，海峡通航不确定性仍存、严控仓位。</div></div>
-      <div class="card"><div class="org">404K Semi-Ai<span class="d">10-15</span></div><div><b>伊朗局势缓和对 AI 基建至关重要</b>：融资成本 7%-9% 居高不下，对 AI 基建不利。</div></div>
-      <div class="card"><div class="org">小牛研报纪要<span class="d">10-15</span></div><div><b>荣盛石化 26Q3 利润环比高增</b>：美国汽油裂差 42、柴油 113 美元/桶，浙石化享受海外高价差红利。</div></div>
+      <div class="card"><div class="org">Orange 期权<span class="d">10/13</span></div>原油期权隐波仍处高位、方向未明，偏向<b>波动率交易</b>而非裸多。</div>
+      <div class="card"><div class="org">刘煜辉<span class="d">中长期</span></div>海峡"最后一博"，顺则中枢不回 70、不顺则 150/200；但<b>勿做长线多油</b>。</div>
     </div>
 
     <div class="sec oil">
-      <h2><span class="no">四</span>今日实时快讯（倒序）</h2>
+      <h2><span class="no">四</span>今日实时快讯</h2>
       <table>
-        <thead><tr><th style="width:48px">时间</th><th>事件</th></tr></thead>
+        <thead><tr><th style="width:44px">时间</th><th>事件</th><th style="width:70px">标签</th></tr></thead>
         <tbody>
-        <tr><td class="tm">盘后</td><td><b>美国 9 月 CPI 3.7% 超预期</b>，10 月加息概率一度五成</td></tr>
-        <tr><td class="tm">盘后</td><td>标普 500 跌 1.1%、纳指跌近 2%，芯片指数六连跌</td></tr>
-        <tr><td class="tm">盘后</td><td>美联储褐皮书示警油价"凶猛"，半数地区价格压力强劲</td></tr>
-        <tr><td class="tm">盘后</td><td><b>IEA 警告柴油短缺持续到 2027</b>，上月柴油出口 -70 万桶/日</td></tr>
-        <tr><td class="tm">盘后</td><td><b>伊朗"全天候"监控霍尔木兹，GFS Pride 货船遭袭沉没</b></td></tr>
-        <tr><td class="tm">盘后</td><td>内塔尼亚胡：10/27 议会选举前不会打击伊朗</td></tr>
+        <tr><td class="tm">15:10</td><td>美原油 95.89 -0.63%，美元 101.84</td><td><span class="tag t-neu">整理</span></td></tr>
+        <tr><td class="tm">13:00</td><td>WTI 回落 96 美元附近，终结六连阳</td><td><span class="tag t-down">回调</span></td></tr>
+        <tr><td class="tm">11:08</td><td>双船沉没，WTI 97.97 +3.03% 三周新高</td><td><span class="tag t-up">升级</span></td></tr>
+        <tr><td class="tm">09:43</td><td>美国 PPI 6.3% 四年半最大涨幅</td><td><span class="tag t-up">通胀</span></td></tr>
+        <tr><td class="tm">09:42</td><td>EIA -860 万桶、胡塞袭亚丁总统府</td><td><span class="tag t-up">告急</span></td></tr>
+        <tr><td class="tm">05:35</td><td>美油 +2.5%、布油 -0.36%、放宽影子船队</td><td><span class="tag t-neu">交织</span></td></tr>
+        </tbody>
+      </table>
+      <div class="quote">关键价：布油 <b>105.68</b>；WTI <b>97.97</b>；SC <b>744.3</b>。</div>
+    </div>
+
+    <div class="sec oil">
+      <h2><span class="no">五</span>昨天（10/15）参照</h2>
+      <table>
+        <thead><tr><th style="width:76px">事件</th><th>内容</th></tr></thead>
+        <tbody>
+        <tr><td><b>伊朗监控</b></td><td>"全天候"监控霍尔木兹</td></tr>
+        <tr><td><b>GFS 沉没</b></td><td>货船霍尔木兹沉没，各执一词</td></tr>
+        <tr><td><b>IEA 柴油</b></td><td>柴油短缺延续至 2027</td></tr>
+        <tr><td><b>CPI 超预期</b></td><td>3.7% 加息概率五成</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="sec oil">
-      <h2><span class="no">六</span>核心逻辑增强 vs 削弱</h2>
+      <h2><span class="no">六</span>逻辑增强 vs 削弱</h2>
       <table>
-        <thead><tr><th>逻辑</th><th style="width:70px">变化</th></tr></thead>
+        <thead><tr><th>逻辑</th><th>变化</th></tr></thead>
         <tbody>
-        <tr><td>霍尔木兹地缘风险</td><td><span class="tag t-up">增强 ↑</span></td></tr>
-        <tr><td>柴油成品油短缺</td><td><span class="tag t-up">增强 ↑</span></td></tr>
-        <tr><td>海外机构预期</td><td><span class="tag t-up">增强 ↑</span></td></tr>
-        <tr><td>加息/美元逆风</td><td><span class="tag t-down">削弱 ↓</span></td></tr>
-        <tr><td>外交曙光</td><td><span class="tag t-down">削弱 ↓</span></td></tr>
-        <tr><td>整体净影响</td><td><span class="tag t-strong">高位拉锯 →</span></td></tr>
+        <tr><td>霍尔木兹航运风险</td><td><span class="tag t-up">增强↑↑</span></td></tr>
+        <tr><td>全球库存告急</td><td><span class="tag t-up">增强↑</span></td></tr>
+        <tr><td>胡塞首袭亚丁</td><td><span class="tag t-up">增强↑</span></td></tr>
+        <tr><td>风险溢价 22 美元</td><td><span class="tag t-up">增强↑</span></td></tr>
+        <tr><td>机构集体上修</td><td><span class="tag t-up">增强↑</span></td></tr>
+        <tr><td>放宽影子船队</td><td><span class="tag t-down">削弱↓</span></td></tr>
+        <tr><td>IEA 释储</td><td><span class="tag t-down">削弱↓</span></td></tr>
+        <tr><td><b>整体净影响</b></td><td><span class="tag t-strong">地缘利多&gt;释储利空</span></td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="verdict">
-      <div class="main">主线 = <b>霍尔木兹地缘风险 + 柴油结构性短缺</b> vs 美国 CPI 超预期加息 + 内塔尼亚胡暂缓打击的多空拉锯。</div>
+    <div class="sec oil verdict">
+      <h2><span class="no">七</span>综合结论</h2>
+      <div class="main">主线 = <b>霍尔木兹双船沉没 + EIA 暴降 860 万桶 + 胡塞首袭亚丁</b>，油市高位拉锯。</div>
       <ul>
-        <li><span class="k">方向</span>：高位震荡，地缘溢价主导但外交曙光与加息逆风压制上行。</li>
-        <li><span class="k">机构共识</span>：布油 90-100 美元，一致提示柴油比原油更短缺。</li>
-        <li><span class="k">星球视角</span>：期权看"原油化工非 1:1"，AI 基建担忧伊朗局势推升融资成本。</li>
-        <li><span class="k">风险点</span>：地缘可被停火瞬间回吐、CPI 加息、内塔尼亚胡暂缓打击。</li>
-        <li><span class="k">操作</span>：地缘事件型交易，严控仓位，趋势偏多但不在高位追多。</li>
+        <li><span class="k">方向</span>：地缘溢价主导，高位震荡偏强；WTI 站 97、布油 100-107 拉锯。</li>
+        <li><span class="k">机构共识</span>：成品油比原油更短缺；多头 100-120、空头 58-70 分歧今年之最。</li>
+        <li><span class="k">风险点</span>：停火/协议/放宽制裁均可能快速回吐；加息 + 强美元压制。</li>
+        <li><span class="k">操作</span>：事件型交易，严控仓位，不在 100 上方追多，关注柴油/天然气。</li>
       </ul>
     </div>
   </div>
 
-  <div class="foot">数据截止 2026-10-15 20:50 · 数据源：华尔街见闻 / Wind / 知识星球<br>仅供参考，不构成投资建议</div>
+  <div class="foot">生成时间 2026-10-16 20:51 · 数据截止 15:40<br>数据源：华尔街见闻 · market-delta · Wind 海外机构 · 知识星球<br>不构成投资建议</div>
 
 <script>
-function sw(name){
-  document.getElementById('copper').classList.remove('active');
-  document.getElementById('oil').classList.remove('active');
-  document.getElementById('tabCopper').className = 'tab';
-  document.getElementById('tabOil').className = 'tab';
-  if(name === 'copper'){
-    document.getElementById('copper').classList.add('active');
-    document.getElementById('tabCopper').className = 'tab active-copper';
-  } else {
-    document.getElementById('oil').classList.add('active');
-    document.getElementById('tabOil').className = 'tab active-oil';
+  function switchTab(t){
+    document.querySelectorAll('.tab').forEach(x=>x.className='tab');
+    document.getElementById('tab-'+t).className='tab '+(t==='copper'?'active-copper':'active-oil');
+    document.getElementById('page-copper').className='page'+(t==='copper'?' active':'');
+    document.getElementById('page-oil').className='page'+(t==='oil'?' active':'');
   }
-}
 </script>
 </body>
 </html>
